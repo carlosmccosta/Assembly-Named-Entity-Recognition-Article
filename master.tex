@@ -1,0 +1,59 @@
+% !TeX encoding = UTF-8
+% !TeX root = master.tex
+% !TeX spellcheck = en_US
+
+\input{tex/preamble}
+\input{tex/glossaries}
+
+
+\begin{document}
+
+
+
+%---------------------------------------------------------------------------------------------------
+% Top matter
+%---------------------------------------------------------------------------------------------------
+
+\title{Extraction of assembly information from instruction manuals}
+
+\author{\IEEEauthorblockN{Carlos M. Costa}
+	\IEEEauthorblockA{Faculty of Engineering\\
+		University of Porto\\
+		Rua Dr. Roberto Frias, s/n 4200-465, Porto, Portugal\\
+		Email: carlos.costa@fe.up.pt
+	}
+}
+
+\IEEEtitleabstractindextext{%
+	\input{tex/abstract}
+	\begin{IEEEkeywords}
+		Natural Language Processing, Named Entity Recognition, Small Parts Assembly, Object Recognition, Industrial Robotics
+	\end{IEEEkeywords}
+}
+
+\maketitle
+\IEEEdisplaynontitleabstractindextext
+
+
+%---------------------------------------------------------------------------------------------------
+% Sections
+%---------------------------------------------------------------------------------------------------
+
+\input{tex/sections/introduction}
+\input{tex/sections/related-work}
+\input{tex/sections/dataset-sources}
+\input{tex/sections/dataset-preparation}
+\input{tex/sections/conclusions}
+\input{tex/sections/future-work}
+
+
+
+%---------------------------------------------------------------------------------------------------
+% Bibliography
+%---------------------------------------------------------------------------------------------------
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+
+\end{document}
