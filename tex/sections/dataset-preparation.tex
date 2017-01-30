@@ -1,5 +1,39 @@
 \section{Dataset preparation}\label{sec:dataset-preparation}
 
-Automatic extraction of text from \gls{pdf} files with multi-column text, tables and large number of images and diagrams is a challenging task for any \gls{nlp} system. As such, the dataset preparation included the automatic extraction of text from the \gls{pdf} files, followed by a manual cleaning and inspection phase in which all the text that was not related to assembly operations was removed. To speedup this process and ensure proper text cleaning across the entire dataset, it was applied a set of regular expressions in order to remove page headers and footers and correct formating issues related with the text extraction. After this preprocessing stage, the dataset was proofread to correct spelling errors. Later on the lists / tables with the information about the required assembly parts / tools was moved into validation files in order to allow the evaluation of a given \gls{ner} system.
+Automatic extraction of text from \gls{pdf} files with multi-column text, tables and large number of images and diagrams is a challenging task for any \gls{nlp} system. As such, the dataset preparation included the automatic extraction of text from the \gls{pdf} files, followed by a manual cleaning and inspection phase in which all the text that was not related to assembly operations was removed. To speedup this process and ensure proper text cleaning across the entire dataset, it was applied a set of regular expressions in order to remove page headers and footers and correct formating issues related with the text extraction. After this preprocessing stage, the dataset was proofread to correct spelling errors. Later on the lists / tables with the information about the required assembly parts / tools was moved into validation files in order to allow the evaluation of information extraction system.
 
-Given that some \gls{nlp} toolkits such as the \gls{srilm} \cite{Stolcke2002} expect tokenized text when building N-gram models, a set of regular expressions was applied to the dataset in order to separate the words from the punctuation. Later on, the cleaned text extracted from the \glspl{pdf} was merged into training (75\%) and testing (25\%) files according to its respective category, namely the alternators, engines, gearboxes and the entire dataset. These merged files have two versions, one with the original cleaned text and another version with the tokenized text.
+Given that the evaluation of \gls{ner} systems normally requires text annotated with the expected entities at the token level, a small yet representative part of the dataset was manually annotated using the \gls{tsv} format that is expected by the Stanford \gls{ner} system. This subset contained assembly operations from the 3 categories of objects (alternators, gearboxes, engines) and was annotated with 9 types of entities. Most of them are product parts, their relative position and the operation in which they are involved, followed by the tools required (detailed entity counts in \cref{tab:dataset-sources_annotated-dataset-overview}).
+
+For speeding up testing, the dataset is already split into 84\% training text and 16\% test text.
+
+\begin{table}[t]
+	\caption{Annotated dataset overview}
+	\tabulinesep = 0.3em
+	\setlength{\tabcolsep}{0.2em}
+	\centering
+	\begin{tabu} { X[3.0,l,m] X[1.3,r,m] X[r,m] X[1.2,r,m] X[r,m] }
+		\rowfont{\bfseries\itshape} & Alternators & Engines & Gearboxes & Global \\
+		\hline
+		Nº of train tokens & 4450 & 9101 & 6819 & 20370 \\
+		Nº of test tokens & 781 & 1852 & 1344 & 3977 \\
+		Nº of PART train tokens & 738 & 1709 & 1477 & 3924 \\
+		Nº of PART test tokens & 156 & 372 & 327 & 855 \\
+		Nº of RPOS train tokens & 83 & 258 & 546 & 887 \\
+		Nº of RPOS test tokens & 25 & 52 & 96 & 173 \\
+		Nº of TOOL train tokens & 72 & 33 & 33 & 138 \\
+		Nº of TOOL test tokens & 5 & 11 & 0 & 16 \\
+		Nº of OPER train tokens & 182 & 342 & 435 & 959 \\
+		Nº of OPER test tokens & 30 & 73 & 72 & 175 \\
+		Nº of ID train tokens & 2 & 49 & 76 & 127 \\
+		Nº of ID test tokens & 0 & 35 & 138 & 173 \\
+		Nº of QTY train tokens & 45 & 41 & 70 & 156 \\
+		Nº of QTY test tokens & 4 & 22 & 23 & 49 \\
+		Nº of DIM train tokens & 0 & 67 & 0 & 67 \\
+		Nº of DIM test tokens & 0 & 5 & 0 & 5 \\
+		Nº of WGT train tokens & 0 & 2 & 0 & 2 \\
+		Nº of WGT test tokens & 0 & 0 & 0 & 0 \\
+		Nº of PROP train tokens & 36 & 63 & 2 & 101 \\
+		Nº of PROP test tokens & 13 & 2 & 0 & 15 \\
+	\end{tabu}
+	\label{tab:dataset-sources_annotated-dataset-overview}
+\end{table}
