@@ -4,6 +4,55 @@ This dataset is composed of 10 English instruction manuals with 453 pages detail
 
 Most of these assembly instruction manuals are single column (two of them are dual column) and have \gls{cad} drawings or pictures alongside the assembly procedures. Moreover, some of these procedures are very long, with the description of all the necessary parts for the entire assembly operation while others have the assembly operations split across the main object components.
 
+\begin{table}[t]
+	\caption{Tokenized dataset overview}
+	\tabulinesep = 0.3em
+	\setlength{\tabcolsep}{0.2em}
+	\centering
+	\begin{tabu} { X[3.0,l,m] X[1.2,r,m] X[r,m] X[1.2,r,m] X[r,m] }
+		\rowfont{\bfseries\itshape} & Alternators													& Engines															& Gearboxes 														& Global 															\\
+		\hline
+		Nº of pages 				& \cooltooltip[1 1 1]{}{}{30+54}{}{84}							& \cooltooltip[1 1 1]{}{}{70+12+15+19+19+13}{}{148}					& \cooltooltip[1 1 1]{}{}{18+203}{}{221}							& \cooltooltip[1 1 1]{}{}{84+148+221}{}{453}						\\
+		Nº of assembly procedures 	& \cooltooltip[1 1 1]{}{}{1+1}{}{2}								& \cooltooltip[1 1 1]{}{}{35+1+1+1+1+1}{}{40}						& \cooltooltip[1 1 1]{}{}{1+52}{}{53}								& \cooltooltip[1 1 1]{}{}{2+40+53}{}{95}							\\
+		Nº of words					& \cooltooltip[1 1 1]{}{}{Train: 7038 | Test: 2274}{}{9312}		& \cooltooltip[1 1 1]{}{}{Train: 16802 | Test: 5945}{}{22747}		& \cooltooltip[1 1 1]{}{}{Train: 23632 | Test: 8166}{}{31798}		& \cooltooltip[1 1 1]{}{}{Train: 47472 | Test: 16385}{}{63857}		\\
+		Nº of characters			& \cooltooltip[1 1 1]{}{}{Train: 44019 | Test: 14399}{}{58418}	& \cooltooltip[1 1 1]{}{}{Train: 101042 | Test: 35255}{}{136297}	& \cooltooltip[1 1 1]{}{}{Train: 150304 | Test: 51134}{}{201438}	& \cooltooltip[1 1 1]{}{}{Train: 295365 | Test: 100788}{}{396153}	\\
+	\end{tabu}
+	\label{tab:dataset-sources_dataset-overview}
+\end{table}
+
+\begin{table}[t]
+	\caption{Annotated dataset overview}
+	\tabulinesep = 0.3em
+	\setlength{\tabcolsep}{0.2em}
+	\centering
+	\begin{tabu} { X[3.0,l,m] X[1.3,r,m] X[r,m] X[1.2,r,m] X[r,m] }
+		\rowfont{\bfseries\itshape} & Alternators & Engines & Gearboxes & Global \\
+		\hline
+		Nº of train tokens & 4450 & 9101 & 6819 & 20370 \\
+		Nº of test tokens & 781 & 1852 & 1344 & 3977 \\
+		Nº of PART train tokens & 738 & 1709 & 1477 & 3924 \\
+		Nº of PART test tokens & 156 & 372 & 327 & 855 \\
+		Nº of RPOS train tokens & 83 & 258 & 546 & 887 \\
+		Nº of RPOS test tokens & 25 & 52 & 96 & 173 \\
+		Nº of TOOL train tokens & 72 & 33 & 33 & 138 \\
+		Nº of TOOL test tokens & 5 & 11 & 0 & 16 \\
+		Nº of OPER train tokens & 182 & 342 & 435 & 959 \\
+		Nº of OPER test tokens & 30 & 73 & 72 & 175 \\
+		Nº of ID train tokens & 2 & 49 & 76 & 127 \\
+		Nº of ID test tokens & 0 & 35 & 138 & 173 \\
+		Nº of QTY train tokens & 45 & 41 & 70 & 156 \\
+		Nº of QTY test tokens & 4 & 22 & 23 & 49 \\
+		Nº of DIM train tokens & 0 & 67 & 0 & 67 \\
+		Nº of DIM test tokens & 0 & 5 & 0 & 5 \\
+		Nº of WGT train tokens & 0 & 2 & 0 & 2 \\
+		Nº of WGT test tokens & 0 & 0 & 0 & 0 \\
+		Nº of PROP test tokens & 36 & 63 & 2 & 101 \\
+		Nº of PROP test tokens & 13 & 2 & 0 & 15 \\
+	\end{tabu}
+	\label{tab:dataset-sources_annotated-dataset-overview}
+\end{table}
+
+
 
 \subsection{Alternators}
 
@@ -24,19 +73,3 @@ This dataset contains a detailed instruction manual for a car gearbox and anothe
 An engine is a machine designed to convert a given source of energy (such as fuel, electricity, compressed air, elastic / chemical energy, etc) into useful mechanical energy.
 
 In this dataset it is provided an instruction manual with the detailed assembly procedures (35) of a small aircraft engine and also 5 more manuals with the assembly operations of small steam engines. All engine assembly manuals were written with a professional language style and had a single column structure with a lot of accompanying figures.
-
-
-\begin{table}[t]
-	\caption{Tokenized dataset overview}
-	\extrarowsep = 0.9ex
-	\centering
-	\begin{tabu} { X[1.7,l,m] X[1.2,r,m] X[r,m] X[1.2,r,m] X[r,m] }
-		\rowfont{\bfseries\itshape} & Alternators													& Engines															& Gearboxes 														& Global 															\\
-		\hline
-		Nº of pages 				& \cooltooltip[1 1 1]{}{}{30+54}{}{84}							& \cooltooltip[1 1 1]{}{}{70+12+15+19+19+13}{}{148}					& \cooltooltip[1 1 1]{}{}{18+203}{}{221}							& \cooltooltip[1 1 1]{}{}{84+148+221}{}{453}						\\
-		Nº of assembly procedures 	& \cooltooltip[1 1 1]{}{}{1+1}{}{2}								& \cooltooltip[1 1 1]{}{}{35+1+1+1+1+1}{}{40}						& \cooltooltip[1 1 1]{}{}{1+52}{}{53}								& \cooltooltip[1 1 1]{}{}{2+40+53}{}{95}							\\
-		Nº of words					& \cooltooltip[1 1 1]{}{}{Train: 7038 | Test: 2274}{}{9312}		& \cooltooltip[1 1 1]{}{}{Train: 16802 | Test: 5945}{}{22747}		& \cooltooltip[1 1 1]{}{}{Train: 23632 | Test: 8166}{}{31798}		& \cooltooltip[1 1 1]{}{}{Train: 47472 | Test: 16385}{}{63857}		\\
-		Nº of characters			& \cooltooltip[1 1 1]{}{}{Train: 44019 | Test: 14399}{}{58418}	& \cooltooltip[1 1 1]{}{}{Train: 101042 | Test: 35255}{}{136297}	& \cooltooltip[1 1 1]{}{}{Train: 150304 | Test: 51134}{}{201438}	& \cooltooltip[1 1 1]{}{}{Train: 295365 | Test: 100788}{}{396153}	\\
-	\end{tabu}
-	\label{tab:dataset-sources_dataset-overview}
-\end{table}
