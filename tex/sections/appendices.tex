@@ -1,6 +1,6 @@
 \appendix
 
-The appendices contain tables with the detailed fine tunning results of the Stanford \gls{ner} system for our assembly operation corpus.
+The appendix contains tables with the detailed fine tunning results of the Stanford \gls{ner} system for our assembly operation corpus. Each line in the tables corresponds to a single test in which a given parameter / feature was changed in relation to the recommended configuration. Besides the standard \gls{ner} evaluation metrics (precision, recall, F1 with associated true positives, false positives and false negatives) it is also provided the language model training time and the classifier performance (in words / second) when tagging the test corpus. Moreover, to allow easy analysis of the test results, it is provided extra columns with the relative performance in relation to the recommended configuration results (each relative result is computed by dividing the current test result with the corresponding result achieved with the recommended configuration given in the official documentation).
 
 \begin{sidewaystable*}[ht]
 	\caption{Tuning of the NER language - model training parameters that improved the F1 metric}
