@@ -1,6 +1,6 @@
 \section{Dataset sources}\label{sec:dataset-sources}
 
-This dataset is composed of 10 English instruction manuals with 453 pages detailing assembly operations of alternators, engines and gearboxes (more details shown in \cref{tab:dataset-sources_dataset-overview}). These object categories were selected because they have small, light and diverse components that a typical industrial robot arm can manipulate and also because they have increasing complexity (from the simple gearboxes to the much more complex fuel / steam engines). These manuals were selected for performing \gls{ner} because they are a representative sample of the several types of manuals that are available for operators working in small parts assembly and also because they were written with a language discourse ranging from very concise and professional to a more colloquial and unstructured type. Moreover they provide tables / lists with the parts and tools required for the assembly operations which are very useful for evaluating \gls{ner} systems.
+Our new dataset is composed of 10 English instruction manuals with 453 pages detailing assembly operations of alternators, engines and gearboxes (more details shown in \cref{tab:dataset-sources_dataset-overview}). These object categories were selected because they have small, light and diverse components that a typical industrial robot arm can manipulate and also because they have increasing complexity (from the simple gearboxes to the much more complex fuel / steam engines). These manuals were selected for performing \gls{ner} because they are a representative sample of the several types of manuals that are available for operators working in small parts assembly and also because they were written with a language discourse ranging from very concise and professional to a more colloquial and unstructured type. Moreover they provide tables / lists with the parts and tools required for the assembly operations which are very useful for evaluating \gls{ner} systems.
 
 Most of these assembly instruction manuals are single column (two of them are dual column) and have \gls{cad} drawings or pictures alongside the assembly procedures. Moreover, some of these procedures are very long, with the description of all the necessary parts for the entire assembly operation while others have the assembly operations split across the main object components.
 
@@ -23,9 +23,9 @@ Most of these assembly instruction manuals are single column (two of them are du
 
 \subsection{Alternators}
 
-Alternators are electrical generators that convert mechanical energy into electrical energy in the form of alternating current. Their assembly is quite complex, involving a lot of small parts and intricate wire bending.
+Alternators are electrical generators that can convert mechanical energy into electrical energy in the form of alternating current. Their assembly is quite complex, involving a lot of small parts and intricate wire bending.
 
-This dataset includes the detailed assembly of two automotive alternators (used to power the electric equipment of cars and charge their battery). One of them was written in a dual column layout with a lot of diagrams and in a professional and concise language style while the other one was written in single column informal language discourse while using mostly pictures instead of technical diagrams.
+This part of the dataset includes the detailed assembly of two automotive alternators (used to power the electric equipment of cars and charge their battery). One of them was written in a dual column layout with a lot of diagrams and in a professional and concise language style while the other one was written in single column informal language discourse while using mostly pictures instead of technical diagrams.
 
 
 \subsection{Gearboxes}
