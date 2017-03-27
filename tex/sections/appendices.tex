@@ -1,10 +1,11 @@
 \appendix\label{ap:tuning-tables}
 
-The appendix contains \cref{tab:configuration-tuning-improved,tab:configuration-tuning,tab:configuration-tuning-decreased-f1} with the detailed fine tunning results of the Stanford \gls{ner} system for our assembly operation corpus. Each line in the tables corresponds to a single test in which a given parameter / feature was changed in relation to the recommended configuration. Besides the standard \gls{ner} evaluation metrics (precision, recall, F1 with associated true positives, false positives and false negatives) it is also provided the language model training time and the classifier performance (in words / second) when tagging the test corpus. Moreover, to allow easy analysis of the test results, it is provided extra columns with the relative performance in relation to the recommended configuration results (each relative result is computed by dividing the current test result with the corresponding result achieved with the recommended configuration given in the official documentation).
+The appendix contains \cref{tab:configuration-tuning-improved,tab:configuration-tuning,tab:configuration-tuning-decreased-f1} with the detailed fine tuning results of the Stanford \gls{ner} system when using our new corpus of assembly operations. Each line in the tables corresponds to a single test in which a given parameter / feature was changed in relation to the recommended configuration. Besides the standard \gls{ner} evaluation metrics (precision, recall, F1 with associated true positives, false positives and false negatives) it is also provided the language model training time and the classifier performance (in words / second) when tagging the test corpus. Moreover, to allow easy analysis of the test results, it is provided extra columns with the relative performance in relation to the recommended configuration results (each relative result is computed by dividing the current test result with the corresponding result achieved with the recommended configuration given in the official documentation).
 
 \begin{sidewaystable*}[ht]
-	\caption{Tuning of the NER language - model training parameters that improved the F1 metric}
+	\caption{Tuning of the NER language model - training parameters that improved the F1 metric}
 	\tabulinesep = 0em
+	\extrarowsep = 0em
 	\tabcolsep = 0.2em
 	\centering
 	\scriptsize
@@ -65,6 +66,7 @@ The appendix contains \cref{tab:configuration-tuning-improved,tab:configuration-
 \begin{sidewaystable*}[ht]
 	\caption{Tuning of the NER language model - training parameters that did not change the F1 metric}
 	\tabulinesep = 0em
+	\extrarowsep = 0em
 	\tabcolsep = 0.2em
 	\centering
 	\fontsize{6}{6.6}\selectfont
@@ -108,6 +110,7 @@ The appendix contains \cref{tab:configuration-tuning-improved,tab:configuration-
 	
 	\caption{Tuning of the NER language model - training parameters that decreased the F1 metric}
 	\tabulinesep = 0em
+	\extrarowsep = 0em
 	\tabcolsep = 0.2em
 	\centering
 	\fontsize{6}{6.6}\selectfont

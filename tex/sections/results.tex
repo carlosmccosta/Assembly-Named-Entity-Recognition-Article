@@ -1,14 +1,14 @@
-\section{Model tuning results analysis}\label{sec:model-tuning-results}
+\section{Stanford NER tuning analysis}\label{sec:model-tuning-results}
 
 Analyzing \cref{tab:results_recommended-configuration,tab:results_optimal-configuration} it can be seen that the fine tuning of the \gls{crf} training features allowed to achieve an absolute improvement (in relation to the official recommended configuration) of 3.23\% in F1, 5.79\% in recall and 0.35\% in precision, resulting in an overall entity recognition performance of 85.91\% in precision, 83.51\% in recall and 84.69\% in F1. As expected, the entity classes with more training samples (such as PART, OPER, RPOS) performed much better than the classes with few instances (which were the case of TOOL, PROP, DIM, QTY, WGT), with the exception of the ID class, that although it had a modest number of samples, it was the best performing entity class, with a F1 metric of 97.87\%. This was due to the effectiveness of the word shape and previous word features that were able to capture the fact that in our corpus the IDs usually contain the "\#" or "ACV" prefix or are preceded with "P/N".
 
 Looking at \cref{tab:configuration-tuning-improved} it can be seen that in isolation most of the main configuration parameters / features available in the Stanford \gls{ner} do not affect the F1 metric significantly. The feature that provided the best improvement was the lowercasing of the words for the n-gram language models, which provided a relative boost of 1.6\%. This is due to the fact that in some assembly operations the entities are capitalized while in other they are not. As such, lowercasing helps to avoid this issue in the testing corpus.
 
-Other features that also improved the F1 metric were the adjusting of the word shape algorithm parameters, along with the increase of the n-gram model length and usage of the middle n-grams. As expected, the usage of gazetteers (built from the manuals list of necessary parts and tools along with the provided IDs) also helped to slightly improve the recognition performance. Besides tuning and activating processing modules, disabling the class features and the usage of the next word also helped improved the F1 metric. Changing the inference type algorithm from Viterbi to Beam and increasing the \gls{crf} order from 1 to 2 also slightly improved the recognition performance.
+Other features that also improved the F1 metric were the adjusting of the word shape algorithm parameters, along with the increase of the n-gram model length and usage of the middle n-grams. As expected, the usage of gazetteers (built from the manuals list of necessary parts and tools along with the provided IDs) also helped to slightly improve the recognition performance. Besides tuning and activating processing modules, disabling the class features and the usage of the next word also helped improved the F1 metric. Changing the inference type algorithm from Viterbi to Beam slightly improved the recognition performance while increasing the \gls{crf} order from 1 to 2 significantly increase the computation time (10 times more) with almost no improvement in recognition performance.
 
 On the other hand, looking at \cref{tab:configuration-tuning,tab:configuration-tuning-decreased-f1} it can be seen that disabling or lowering the n-gram model length to just unigrams was the change that most decreased the F1 metric (with a relative reduction of 8.2\%), followed closely by the usage of the bag of words features and the sigma smoothing. Disabling the previous word feature also decreased the recognition performance (with a relative decrease of F1 metric of 1.2\%).
 
-When inspecting the training time, it can be seen that disabling the usage of sequences and previous sequences, along with disabling the usage of the previous word and activating the usage of only the observed sequences managed to reduce the training time to almost half. On the other hand, increasing the \gls{crf} order and using the bag of words features drastically increased the training time (up to 50 times higher) but it managed to reduce the false positives by 22.1\% (while almost tripling the false positives).
+When inspecting the training time, it can be seen that disabling the usage of sequences and previous sequences, along with disabling the usage of the previous word and activating the usage of only the observed sequences managed to reduce the training time to almost half. On the other hand, using the bag of words features drastically increased the training time (up to 50 times higher) but it managed to reduce the false positives by 22.1\% (while almost tripling the false positives).
 
 Moving to the tagging time performance, we can see that the Viterbi inference algorithm is almost twice as fast as the Beam algorithm while being able to achieve the same recognition performance. Moreover, increasing the \gls{crf} order from 1 to 2 or using the bag of words features made the tagger run around 5 times slower.
 
@@ -19,12 +19,10 @@ There are a lot of more parameters and features than the ones previously discuss
 
 \begin{table}[ht]
 	\caption{NER results using the recommended configuration}
-	\tabulinesep = 0.3em
-	\setlength{\tabcolsep}{0.2em}
 	\centering
 	\begin{tabu} { X[c,m] X[r,m] X[r,m] X[r,m] X[r,m] X[r,m] X[r,m] }
 		\rowfont{\bfseries\itshape} Entity & Precision & Recall & F1 & True positives & False positives & False negatives \\
-		\hline
+		\lasthline
 		DIM & 0.0714 & 0.5000 & 0.1250 & 1 & 13 & 1 \\
 		ID & 0.9886 & 0.9158 & 0.9508 & 87 & 1 & 8 \\
 		OPER & 0.8896 & 0.8286 & 0.8580 & 145 & 18 & 30 \\
@@ -41,12 +39,10 @@ There are a lot of more parameters and features than the ones previously discuss
 
 \begin{table}[ht]
 	\caption{NER results using the fine tuned configuration}
-	\tabulinesep = 0.3em
-	\setlength{\tabcolsep}{0.2em}
 	\centering
 	\begin{tabu} { X[c,m] X[r,m] X[r,m] X[r,m] X[r,m] X[r,m] X[r,m] }
 		\rowfont{\bfseries\itshape} Entity & Precision & Recall & F1 & True positives & False positives & False negatives \\
-		\hline
+		\lasthline
 		DIM & 0.0625 & 0.5000 & 0.1111 & 1 & 15 & 1 \\
 		ID & 0.9892 & 0.9684 & 0.9787 & 92 & 1 & 3 \\
 		OPER & 0.8935 & 0.8629 & 0.8779 & 151 & 18 & 24 \\

@@ -1,19 +1,17 @@
 \section{Dataset preparation}\label{sec:dataset-preparation}
 
-Automatic extraction of text from \gls{pdf} files with multi-column text, tables and large number of images and diagrams is a challenging task for any \gls{nlp} system. As such, the dataset preparation included the automatic extraction of text from the \gls{pdf} files, followed by a manual cleaning and inspection phase in which all the text that was not related to assembly operations was removed. To speedup this process and ensure proper text cleaning across the entire dataset, it was applied a set of regular expressions in order to remove page headers and footers and correct formating issues related with the text extraction. After this preprocessing stage, the dataset was proofread to correct spelling errors. Later on the lists / tables with the information about the required assembly parts / tools was moved into validation files in order to allow the evaluation of information extraction system.
+Automatic extraction of text from \gls{pdf} files with multi-column text, tables and large number of images and diagrams is a challenging task for any \gls{nlp} system. As such, the dataset preparation included the automatic extraction of text from the \gls{pdf} files, followed by a manual cleaning and inspection phase in which all the text that was not related to assembly operations was removed. To speedup this process and ensure proper text cleaning across the entire dataset, it was applied a set of regular expressions in order to remove page headers and footers and correct formating issues related with the text extraction. After this preprocessing stage (which may not be required in deployed \gls{nlp} systems, since the language models are already computed), the dataset was proofread to correct spelling errors. Later on the lists / tables with the information about the required assembly parts / tools was moved into validation files in order to allow the evaluation of information extraction systems.
 
-Given that the evaluation of \gls{ner} systems normally requires text annotated with the expected entities at the token level, a small yet representative part of the dataset was manually annotated using the \gls{tsv} format that is expected by the Stanford \gls{ner} system. This subset contained assembly operations from the 3 categories of objects (alternators, gearboxes, engines) and was annotated with 9 types of entities. Most of them are product parts, their relative position and the operation in which they are involved, followed by the tools required (detailed entity counts in \cref{tab:dataset-sources_annotated-dataset-overview}).
+Given that the evaluation of \gls{ner} systems normally requires text annotated with the expected entities at the token level, a small yet representative part of the dataset was manually annotated using the IO (Inside / Outside) encoding and saved in the \gls{tsv} file format expected by the Stanford \gls{ner} system (examples of annotations in \cref{tab:alternators-annotations,tab:engines-annotations,tab:gearboxes-annotations}). This subset of he dataset contained assembly operations from the 3 categories of objects (alternators, engines, gearboxes) and was annotated with 9 types of entities (detailed entity counts in \cref{tab:dataset-sources_annotated-dataset-overview}) plus a neutral class that represents no entity (O). Most of them are product parts (PART), their relative position (RPOS) and the operations (OPER) in which they are involved, followed by the tools (TOOL) required. Other minority classes include the parts unique identification numbers (ID), their quantity (QTY), dimensions (DIM), weight (WGT) and general properties (PROP), such as surface color.
 
-For speeding up testing, the dataset is already split into 84\% training text and 16\% test text and is available at\footnote{\url{https://github.com/carlosmccosta/Assembly-Named-Entity-Recognition}}.
+In order to speeding up testing for other developers, the dataset is already split into 84\% of training text and 16\% of test text and is available at\footnote{\url{https://github.com/carlosmccosta/Assembly-Named-Entity-Recognition}}.
 
 \begin{table}[t]
 	\caption{Annotated dataset overview}
-	\tabulinesep = 0.3em
-	\setlength{\tabcolsep}{0.2em}
 	\centering
 	\begin{tabu} { X[3.0,l,m] X[1.3,r,m] X[r,m] X[1.2,r,m] X[r,m] }
 		\rowfont{\bfseries\itshape} & Alternators & Engines & Gearboxes & Global \\
-		\hline
+		\lasthline
 		Nº of train tokens & 4450 & 9101 & 6819 & 20370 \\
 		Nº of test tokens & 781 & 1852 & 1344 & 3977 \\
 		Nº of PART train tokens & 738 & 1709 & 1477 & 3924 \\
@@ -36,4 +34,99 @@ For speeding up testing, the dataset is already split into 84\% training text an
 		Nº of PROP test tokens & 13 & 2 & 0 & 15 \\
 	\end{tabu}
 	\label{tab:dataset-sources_annotated-dataset-overview}
+\end{table}
+
+
+\begin{table}[t]
+	\centering
+	\begin{minipage}[t]{.28\linewidth}
+		\caption{Alternators dataset annotations}
+		\begin{tabu} { X[l,m] X[r,m] }
+			\rowfont{\bfseries\itshape} Token & Class \\
+			\lasthline
+			Use		&	O		\\
+			5/16	&	DIM		\\
+			"		&	DIM		\\
+			hex		&	TOOL	\\
+			wrench	&	TOOL	\\
+			or		&	O		\\
+			5/16	&	DIM		\\
+			"		&	DIM		\\
+			hex		&	TOOL	\\
+			drive	&	TOOL	\\
+			,		&	O		\\
+			in		&	O		\\
+			the		&	O		\\
+			end		&	RPOS	\\
+			of		&	RPOS	\\
+			the		&	O		\\
+			shaft	&	PART	\\
+			,		&	O		\\
+			to		&	O		\\
+			hold	&	OPER	\\
+			while	&	O		\\
+			removing	&	OPER	\\
+			shaft	&	PART	\\
+			nut		&	PART	\\
+			.		&	O		\\
+		\end{tabu}
+		\label{tab:alternators-annotations}
+	\end{minipage}
+	\hspace{0.3em}
+	\begin{minipage}[t]{.28\linewidth}
+		\caption{Engines \protect\\dataset annotations}
+		\begin{tabu} { X[l,m] X[r,m] }
+			\rowfont{\bfseries\itshape} Token & Class \\
+			\lasthline
+			Remove	&	OPER	\\
+			the		&	O		\\
+			black	&	PROP	\\
+			outer	&	RPOS	\\
+			jacket	&	PART	\\
+			and		&	O		\\
+			the		&	O		\\
+			white	&	PROP	\\
+			insulation	&	PART	\\
+			core	&	PART	\\
+			to		&	O		\\
+			expose	&	OPER	\\
+			a		&	O		\\
+			3/8		&	DIM		\\
+			"		&	DIM		\\
+			length	&	DIM		\\
+			of		&	O		\\
+			the		&	O		\\
+			inner	&	RPOS	\\
+			conductor	&	PART	\\
+			.		&	O		\\
+		\end{tabu}
+		\label{tab:engines-annotations}
+	\end{minipage}
+	\hspace{0.3em}
+	\begin{minipage}[t]{.28\linewidth}
+		\caption{Gearboxes dataset annotations}
+		\begin{tabu} { X[l,m] X[r,m] }
+			\rowfont{\bfseries\itshape} Token & Class \\
+			\lasthline
+			Install	&	OPER	\\
+			Slotted	&	PART	\\
+			Hex		&	PART	\\
+			Bearing	&	PART	\\
+			Adjusting	&	PART	\\
+			Nut		&	PART	\\
+			(		&	O		\\
+			\#		&	ID		\\
+			770730	&	ID		\\
+			)		&	O		\\
+			with	&	O		\\
+			Cotter	&	TOOL	\\
+			Pin		&	TOOL	\\
+			(		&	O		\\
+			\#		&	ID		\\
+			770421	&	ID		\\
+			)		&	O		\\
+			.		&	O		\\
+		\end{tabu}
+		\label{tab:gearboxes-annotations}
+	\end{minipage}
 \end{table}
